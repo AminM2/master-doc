@@ -1,7 +1,6 @@
 
-#vars
+
 square = 20
-#I sware to god if i lose sync one more bloody time
 
 def drawBoard():
   k = 0
