@@ -1,4 +1,5 @@
 import pygame, sys
+from pygame.locals import *
 
 WINDOWWIDTH = 600
 WINDOWHEIGHT = 1000
@@ -14,3 +15,6 @@ while running:
             running = False
 
     pygame.display.update()
+
+# Window doesn't close on Windows
+# - Perhaps needs a clock?
