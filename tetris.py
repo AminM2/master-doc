@@ -1,4 +1,5 @@
 import pygame, sys
+from pygame.locals import *
 
 WINDOWWIDTH = 500
 WINDOWHEIGHT = 750
