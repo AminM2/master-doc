@@ -2,7 +2,7 @@ import pygame, sys
 from pygame.locals import *
 
 WINDOWWIDTH = 500
-WINDOWHEIGHT = 800
+WINDOWHEIGHT = 750
 
 pygame.init()
 pygame.display.set_caption("Tetris")
