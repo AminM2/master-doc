@@ -1,51 +1,52 @@
 import pygame, sys
 
-WINDOWWIDTH = 600
-WINDOWHEIGHT = 1000
+WINDOWWIDTH = 500
+WINDOWHEIGHT = 750
 
 pygame.init()
 pygame.display.set_caption("Tetris")
 window = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 running = True
 
-square = 20
+#THIS IS PEACESIZE
+SQUARE = 25
 
 def drawBoard():
   k = 0
-  c = square
+  c = SQUARE
   l = 0
   o = -1
   p = 2
   p2 = 1
-  for i in range(1,240):
+  for i in range(1,264):
     if i%12 == 0:
-      l += square
-      c = o*square*p
-      k = -o*square*p2
+      l += SQUARE
+      c = o*SQUARE*p
+      k = -o*SQUARE*p2
       o = o * -1
       if p == 2:
         p = 1
         p2 = 2
-        pygame.draw.rect(window,"gray",(square,l,square,square))
+        pygame.draw.rect(window,"gray",(SQUARE+100,l+100,SQUARE,SQUARE))
       elif p == 1:
         p = 2
         p2 = 1
-        pygame.draw.rect(window,"darkgray",(square,l,square,square))
+        pygame.draw.rect(window,"darkgray",(SQUARE+100,l+100,SQUARE,SQUARE))
     if (i%2 == 0):
-      k += square*2
-      pygame.draw.rect(window,"gray",(k+0,l,square,square))
+      k += SQUARE*2
+      pygame.draw.rect(window,"gray",(k+100,l+100,SQUARE,SQUARE))
     elif i == 1:
-      pygame.draw.rect(window,"gray",(0,0,square,square))
-      pygame.draw.rect(window,"darkgray",(c+0,0,square,square))
+      pygame.draw.rect(window,"gray",(100,100,SQUARE,SQUARE))
+      pygame.draw.rect(window,"darkgray",(c+100,100,SQUARE,SQUARE))
     elif i%2 == 1:
-      c += square*2
-      pygame.draw.rect(window,"darkgray",(c+0,l,square,square))
-  pygame.draw.rect(window,"black",(square,square,square*10,square*18))
-
+      c += SQUARE*2
+      pygame.draw.rect(window,"darkgray",(c+100,l+100,SQUARE,SQUARE))
+  pygame.draw.rect(window,"black",(SQUARE+100,SQUARE+100,SQUARE*10,SQUARE*20))
+  pygame.draw.rect(window,"black",(425,125,SQUARE,SQUARE*21))
 
 while running:
     for event in pygame.event.get():
-        if event == pygame.QUIT:
+        if event.type == pygame.QUIT:
             running = False
 
     drawBoard()
