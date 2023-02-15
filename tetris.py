@@ -11,10 +11,7 @@ running = True
 
 while running:
     for event in pygame.event.get():
-        if event == pygame.QUIT:
+        if event.type == pygame.QUIT:
             running = False
 
     pygame.display.update()
-
-# Window doesn't close on Windows
-# - Perhaps needs a clock?
