@@ -4,6 +4,14 @@ from pygame.locals import *
 WINDOWWIDTH = 500
 WINDOWHEIGHT = 750
 
+TEAL = (99, 252, 255)
+BLUE = (2, 11, 245)
+ORANGE = (245, 153, 5)
+YELLOW = (250, 234, 5)
+GREEN = (25, 222, 18)
+PURPLE = (136, 22, 201)
+RED = (245, 17, 17)
+
 pygame.init()
 pygame.display.set_caption("Tetris")
 window = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
