@@ -3,6 +3,11 @@ from pygame.locals import *
 
 WINDOWWIDTH = 500
 WINDOWHEIGHT = 750
+STARTBUTTONWIDTH = 150
+STARTBUTTONHEIGHT = 75
+TEXTSIZE = 60
+SQUARE = 25
+#Piece size ^
 
 TEAL = (99, 252, 255)
 BLUE = (2, 11, 245)
@@ -11,14 +16,32 @@ YELLOW = (250, 234, 5)
 GREEN = (25, 222, 18)
 PURPLE = (136, 22, 201)
 RED = (245, 17, 17)
+PINK = (245, 0, 167)
+DARKPINK = (92, 0, 63)
+
+pregame = True
+
+startText = "Start"
 
 pygame.init()
+fontObject = pygame.freetype.SysFont("arial.ttf", TEXTSIZE)
 pygame.display.set_caption("Tetris")
 window = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 running = True
 
-#THIS IS PEACESIZE
-SQUARE = 25
+startButtonRect = pygame.Rect((WINDOWWIDTH/2)-(STARTBUTTONWIDTH/2), WINDOWHEIGHT/2, STARTBUTTONWIDTH, STARTBUTTONHEIGHT)
+
+
+def drawStartButton():
+    global fontObject, startText
+    pygame.draw.rect(window, PINK, startButtonRect)
+    boundingBox = fontObject.get_rect(startText, size=TEXTSIZE)
+    fontObject.render_to(window, (startButtonRect.x + (startButtonRect.w - boundingBox.w)/2, startButtonRect.y + (startButtonRect.h - boundingBox.h)/2), startText, DARKPINK)
+
+def startGame():
+    global pregame
+    if pregame and startButtonRect.collidepoint(mousePos):
+        pregame = False
 
 def drawBoard():
   k = 0
@@ -54,10 +77,22 @@ def drawBoard():
   pygame.draw.rect(window,"black",(425,125,SQUARE,SQUARE*21))
 
 while running:
+    window.fill((0, 0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mousePos = event.pos
+            startGame()
+        
+    
     drawBoard()
+    if pregame:
+        drawStartButton()
+
+    if not pregame:
+        None
+        # Write game loop code here
+    
     pygame.display.update()
 
