@@ -38,10 +38,11 @@ def drawStartButton():
     boundingBox = fontObject.get_rect(startText, size=TEXTSIZE)
     fontObject.render_to(window, (startButtonRect.x + (startButtonRect.w - boundingBox.w)/2, startButtonRect.y + (startButtonRect.h - boundingBox.h)/2), startText, DARKPINK)
 
-def startGame():
-    global pregame
+def startGame(pregame):
     if pregame and startButtonRect.collidepoint(mousePos):
-        pregame = False
+        return(False)
+    else:
+        return(True)
 
 def drawBoard():
   k = 0
@@ -81,9 +82,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN and pregame:
             mousePos = event.pos
-            startGame()
+            pregame = startGame(pregame)
         
     
     drawBoard()
