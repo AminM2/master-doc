@@ -77,6 +77,40 @@ def drawBoard():
   pygame.draw.rect(window,"black",(SQUARE+100,SQUARE+100,SQUARE*10,SQUARE*20))
   pygame.draw.rect(window,"black",(425,125,SQUARE,SQUARE*21))
 
+def setCenterTreeDown(pieceX, pieceHeight):
+    pieceList = [
+        pygame.Rect(pieceX, pieceHeight, PIECESIZE, PIECESIZE),
+        pygame.Rect(pieceX+PIECESIZE, pieceHeight, PIECESIZE, PIECESIZE),
+        pygame.Rect(pieceX+(2*PIECESIZE), pieceHeight, PIECESIZE, PIECESIZE),
+        pygame.Rect(pieceX+PIECESIZE, pieceHeight + PIECESIZE, PIECESIZE, PIECESIZE),
+    ]
+    return pieceList
+
+def drawShape(blockList, color):
+    for block in blockList:
+        for block in blockList:
+            pygame.draw.rect(window, color, block)
+
+def lineHor(pieceX,pieceHeight):
+    pieceList = [
+        pygame.Rect(pieceX,pieceHeight,SQUARE,SQUARE),
+        pygame.Rect(pieceX,pieceHeight+SQUARE,SQUARE,SQUARE),
+        pygame.Rect(pieceX,pieceHeight+(2*SQUARE),SQUARE,SQUARE),
+        pygame.Rect(pieceX,pieceHeight+(3*SQUARE),SQUARE,SQUARE)
+    ]
+    return pieceList
+def lineVert(pieceX,pieceHeight):
+    pieceList = [
+        pygame.Rect(pieceX,pieceHeight,SQUARE,SQUARE),
+        pygame.Rect(pieceX+SQUARE,pieceHeight,SQUARE,SQUARE),
+        pygame.Rect(pieceX+(2*SQUARE),pieceHeight,SQUARE,SQUARE),
+        pygame.Rect(pieceX+(3*SQUARE),pieceHeight,SQUARE,SQUARE)
+    ]
+    return pieceList
+
+pieceX=150
+pieceY=150
+
 while running:
     window.fill((0, 0, 0))
     for event in pygame.event.get():
@@ -85,15 +119,14 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN and pregame:
             mousePos = event.pos
             pregame = startGame(pregame)
-        
-    
     drawBoard()
     if pregame:
         drawStartButton()
 
     if not pregame:
-        None
-        # Write game loop code here
-    
-    pygame.display.update()
+        pieceList=lineHor(200,200)
 
+        drawShape(pieceList,YELLOW)
+        # Write game loop code here
+
+    pygame.display.update()
