@@ -3,6 +3,7 @@ from pygame.locals import *
 
 WINDOWWIDTH = 500
 WINDOWHEIGHT = 750
+FPS = 60
 STARTBUTTONWIDTH = 150
 STARTBUTTONHEIGHT = 75
 TEXTSIZE = 60
@@ -27,6 +28,7 @@ pygame.init()
 fontObject = pygame.freetype.SysFont("arial.ttf", TEXTSIZE)
 pygame.display.set_caption("Tetris")
 window = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+clock = pygame.time.Clock()
 running = True
 
 startButtonRect = pygame.Rect((WINDOWWIDTH/2)-(STARTBUTTONWIDTH/2), WINDOWHEIGHT/2, STARTBUTTONWIDTH, STARTBUTTONHEIGHT)
@@ -112,6 +114,7 @@ pieceX=150
 pieceY=150
 
 while running:
+    clock.tick(FPS)
     window.fill((0, 0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -124,9 +127,10 @@ while running:
         drawStartButton()
 
     if not pregame:
+        #Write game loop code below ⬇
         pieceList=lineHor(200,200)
 
         drawShape(pieceList,YELLOW)
-        # Write game loop code here
+        
 
     pygame.display.update()
