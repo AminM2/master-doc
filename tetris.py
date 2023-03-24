@@ -79,10 +79,10 @@ def drawBoard():
 
 def setCenterTreeDown(pieceX, pieceHeight):
     pieceList = [
-        pygame.Rect(pieceX, pieceHeight, PIECESIZE, PIECESIZE),
-        pygame.Rect(pieceX+PIECESIZE, pieceHeight, PIECESIZE, PIECESIZE),
-        pygame.Rect(pieceX+(2*PIECESIZE), pieceHeight, PIECESIZE, PIECESIZE),
-        pygame.Rect(pieceX+PIECESIZE, pieceHeight + PIECESIZE, PIECESIZE, PIECESIZE),
+        pygame.Rect(pieceX, pieceHeight, SQUARE, SQUARE),
+        pygame.Rect(pieceX+SQUARE, pieceHeight, SQUARE, SQUARE),
+        pygame.Rect(pieceX+(2*SQUARE), pieceHeight, SQUARE, SQUARE),
+        pygame.Rect(pieceX+SQUARE, pieceHeight + SQUARE, SQUARE, SQUARE),
     ]
     return pieceList
 
